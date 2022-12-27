@@ -43,14 +43,28 @@ export const GetWalletAddress = (
 };
 
 // retrieveStuckedERC20Token
-export const Tokenretrive = (provider,amount,address) => {
-  return getContract(ICOTokenContract, ICO_ABI, provider).methods.retrieveStuckedERC20Token(
-   
-  );
+export const Tokenretrive = (provider, amount, address) => {
+  return getContract(
+    ICOTokenContract,
+    ICO_ABI,
+    provider
+  ).methods.retrieveStuckedERC20Token();
 };
 
 export const GetICOStatus = (provider) => {
   return getContract(ICOTokenContract, ICO_ABI, provider)
     .methods.isICOOver()
+    .call();
+};
+
+export const GetTokenomics = (provider, address) => {
+  return getContract(ICOTokenContract, ICO_ABI, provider)
+    .methods.Tokonomics()
+    .call();
+};
+
+export const Getowneraddres = (provider, address) => {
+  return getContract(ICOTokenContract, ICO_ABI, provider)
+    .methods.owner()
     .call();
 };

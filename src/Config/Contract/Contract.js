@@ -1,3 +1,3 @@
-export const ICOTokenContract = "0xd3FcB08bAe15a5Fac5d0d9C462bB274658c414D4"; // Hammada ico address
-export const USDTToken = "0x64A4E9a31f7ee415A7d9012d13B80eE2c49554C3"; // USDTToken
-export const RanpoToken = "0xe869346cB6795601E71dF6407f168aB546A6a85C";
+export const ICOTokenContract = "0xE237EB1f976c7535842b18748096cED2B9d75618"; // Hammada ico address
+export const USDTToken = "0xB9509AAF6371A9F381EA60c086996062909221cc"; // USDTToken
+export const RanpoToken = "0xF259e222174A05472aAaA86DCF9887BB16Cec309";

@@ -40,14 +40,14 @@ function Header(props) {
 
   return (
     <>
-      <div className="fixed top-0 w-full px-5 border-b-2 border-[#9C045D]  top-0 z-[1000] bg-black">
+      <div className="fixed top-0 w-full px-5 border-b-2 border-[#FFD51E]  top-0 z-[1000] bg-black">
         <div className="flex justify-between h-[105px] items-center">
           {/* Logo of header */}
           <div>
             <div className="cursor-pointer max-w-[150px]">
               <img
                 src={process.env.PUBLIC_URL + "assets/images/logo.png"}
-                width="42%"
+                width="75%"
               ></img>
             </div>
             <div></div>
@@ -92,7 +92,7 @@ function Header(props) {
             )} */}
             <div
               onClick={!active ? login : logout}
-              className="hidden font-bold md:block px-[16px] py-[8px] bg-gradient-to-r from-[#f4e9b0] to-[#9C045D] rounded-md text-black cursor-pointer ease-in duration-300  hover:shadow-xl hover:shadow-[#060b27]/20"
+              className="hidden font-bold md:block px-[16px] py-[8px] bg-[#FFD51E] rounded-md text-black cursor-pointer ease-in duration-300  hover:shadow-xl hover:shadow-[#060b27]/20"
             >
               {!active ? "Connect Wallet" : "Disconnect Wallet"}
             </div>
@@ -134,7 +134,7 @@ function Header(props) {
                     setisBurger(false);
                     handleOpenConnectModal();
                   }}
-                  className=" font-bold px-[16px] py-[8px] bg-gradient-to-r bg-gradient-to-r from-[#f4e9b0] to-[#9C045D]  rounded-md text-black cursor-pointer ease-in duration-300  "
+                  className=" font-bold px-[16px] py-[8px] bg-gradient-to-r bg-[#FFD51E]  rounded-md text-black cursor-pointer ease-in duration-300  "
                 >
                   Connect Wallet
                 </div>
@@ -144,13 +144,13 @@ function Header(props) {
               {" "}
               {active && (
                 <div className="group ">
-                  <div className="flex gap-3 px-[16px] py-[8px] bg-gradient-to-r from-[#f4e9b0] to-[#cca143] rounded-md text-black justify-center cursor-pointer ease-in duration-300  hover:shadow-xl hover:shadow-[#060b27]/20">
+                  <div className="flex gap-3 px-[16px] py-[8px] bg-[#FFD51E] rounded-md text-black justify-center cursor-pointer ease-in duration-300  hover:shadow-xl hover:shadow-[#060b27]/20">
                     <span>
                       <IoWallet size={20} />
                     </span>{" "}
                     {/* <span>{spliceString(account).toUpperCase()}</span> */}
                   </div>
-                  <ul class="absolute hidden font-bold text-gray-700 pt-1  group-hover:block shadow-xl bg-gradient-to-r from-[#f4e9b0] to-[#9C045D]  shadow-[#060b27]/20 rounded-md hover: ">
+                  <ul class="absolute hidden font-bold text-gray-700 pt-1  group-hover:block shadow-xl bg-[#FFD51E]  shadow-[#060b27]/20 rounded-md hover: ">
                     <li
                       class=" flex text-black gap-3 px-[16px] py-[8px] cursor-pointer  rounded-md"
                       // onClick={handleWalletDisconnect}
@@ -211,7 +211,7 @@ function Header(props) {
                         login();
                         handleCloseConnectModal();
                       }}
-                      className="flex p-3 items-center border border-[#e8ecf4] cursor-pointer hover:shadow-xl hover:shadow-[#060b27]/10 rounded ease-out duration-300"
+                      className="flex p-3 items-center border border-[#FFD51E] cursor-pointer hover:shadow-xl hover:shadow-[#060b27]/10 rounded ease-out duration-300"
                     >
                       <span>
                         <img

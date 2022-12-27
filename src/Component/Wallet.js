@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Form, Input } from "antd";
-import { GetWalletAddress, GetICOStatus } from "../Utils/contractHelper";
+import {
+  GetWalletAddress,
+  GetICOStatus,
+  Getowneraddres,
+  GetTokenomics,
+} from "../Utils/contractHelper";
 import Web3 from "web3";
 import Swal from "sweetalert2";
 import { useWeb3React } from "@web3-react/core";
@@ -18,9 +23,17 @@ function Wallet() {
   const [ManualBurning, setManualBurning] = useState();
   const [Stake, setStake] = useState();
   const [ICOstatus, setICOstatus] = useState();
+  const [Owneraddtess, setOwneraddtess] = useState();
+  const [tokonomics, setTokonomics] = useState();
 
   useEffect(async () => {
     if (active) {
+      setOwneraddtess(await Getowneraddres(library.provider));
+      console.log(Owneraddtess, "this is the owner address");
+      console.log(account, "this is the wallet address");
+      console.log(tokonomics, "tokenomics  details");
+      // setTokonomics(await GetTokenomics(library.provider));
+      setTokonomics(await GetTokenomics(library.provider));
       setICOstatus(
         await GetICOStatus("https://data-seed-prebsc-1-s1.binance.org:8545/")
       );
@@ -30,6 +43,10 @@ function Wallet() {
   const Wallettransition = async () => {
     if (!active) {
       Swal.fire("Please connect to the wallet");
+    } else if (Owneraddtess !== account) {
+      Swal.fire("You are not owner");
+    } else if (tokonomics > 0) {
+      Swal.fire("Already transition completed");
     } else if (ICOstatus == false) {
       Swal.fire("Please wait for ICO to Over");
     } else {
@@ -260,7 +277,7 @@ function Wallet() {
               </Form.Item>
             </div>
             <div
-              class=" max-w-[150px] mt-5 text-center hidden md:block px-[16px] py-[8px] bg-gradient-to-r from-[#f4e9b0] to-[#9C045D]  rounded-md text-black cursor-pointer ease-in duration-300  hover:shadow-xl hover:shadow-[#060b27]/20"
+              class=" max-w-[150px] mt-5 text-center hidden md:block px-[16px] py-[8px] bg-[#FFD51E] font-bold  rounded-md text-black cursor-pointer ease-in duration-300  hover:shadow-xl hover:shadow-[#060b27]/20"
               onClick={Wallettransition}
             >
               Submit
