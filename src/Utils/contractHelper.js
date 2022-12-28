@@ -11,35 +11,14 @@ const getContract = (contractAddress, ABI, provider) => {
 };
 
 // tokonomicsTransfere
-export const GetWalletAddress = (
-  provider,
-  _team,
-  _development,
-  _crew,
-  _charitable,
-  _media,
-  _gameNFT,
-  _project,
-  _code,
-  _manualBurning,
-  _stake
-) => {
+
+export const GetFundtransfer = (provider, address, amount) => {
+  console.log(address, amount);
   return getContract(
     ICOTokenContract,
     ICO_ABI,
     provider
-  ).methods.tokonomicsTransfere(
-    _team,
-    _development,
-    _crew,
-    _charitable,
-    _media,
-    _gameNFT,
-    _project,
-    _code,
-    _manualBurning,
-    _stake
-  );
+  ).methods.tokenomicsTransfer(address, amount);
 };
 
 // retrieveStuckedERC20Token
@@ -63,7 +42,13 @@ export const GetTokenomics = (provider, address) => {
     .call();
 };
 
-export const Getowneraddres = (provider, address) => {
+export const GetUserToken = (provider, address) => {
+  return getContract(USDTToken, USDTTokenABI, provider)
+    .methods.balanceOf(ICOTokenContract)
+    .call();
+};
+
+export const Getowneraddres = (provider) => {
   return getContract(ICOTokenContract, ICO_ABI, provider)
     .methods.owner()
     .call();
