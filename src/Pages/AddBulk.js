@@ -14,90 +14,76 @@ import Swal from "sweetalert2";
 function CSVUpload(props) {
   const [ReadCsvData, setReadCsvData] = useState(null);
   const [isUploded, setUploded] = useState(false);
-  const [Usdtstatus, setUsdtstatus] = useState();
-  const [Owneraddres, getOwneraddress] = useState();
+  const [Usdtstatus, setUsdtstatus] = useState(0);
+  const [Owneraddres, setOwneraddress] = useState(null);
   const [AddressWalletlist, setAddressWalletlist] = useState([]);
   const [AddressPercentage, setAddressPercentage] = useState([]);
-
   const { library, active, account } = useWeb3React();
 
-  useEffect(async () => {
-    if (active) {
-      await GetUserToken(library.provider).then((res) => {
-        setUsdtstatus(parseFloat(res));
-      });
-      // getOwneraddress
-      await Getowneraddres(library.provider, account).then((res) => {
-        getOwneraddress(parseFloat(res));
-      });
-    }
-  }, [active, account]);
+  useEffect(() => {
+    GetUserToken().then((res) => {
+      console.log(res);
+      setUsdtstatus(parseFloat(res));
+    });
+
+    Getowneraddres().then((res) => {
+      console.log(res);
+      setOwneraddress(res);
+    });
+  }, []);
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <h3 className="text-xl text-center font-fond mb-[10px]">
-        {" "}
-        Transferfund from wallet
-        {console.log("USDT STATUS:", Usdtstatus)}
-        {console.log("owner address:", Owneraddres)}
-      </h3>
+      <h3 className="text-2xl text-center font-fond mb-[10px]">Transferfund</h3>
+
       <form
         class="form-inline  "
         onSubmit={async (e) => {
           e.preventDefault();
-          Papa.parse(document.getElementById("files").files[0], {
-            header: true,
-            complete: async (results) => {
-              console.log(results);
-              setReadCsvData(results.data);
+          if (active) {
+            console.log(Owneraddres, account);
+            if (Owneraddres === account) {
+              if (parseInt(Usdtstatus)) {
+                Papa.parse(document.getElementById("files").files[0], {
+                  header: true,
+                  complete: async (results) => {
+                    console.log(results);
+                    setReadCsvData(results.data);
 
-              if (results.data !== null) {
-                let Data = [];
-                let SecondData = [];
-                if (active) {
-                  if (Usdtstatus > 0) {
-                    if (true) {
-                      if (Data.length == SecondData.length) {
-                        console.log(results);
-                        results.data.map((data) => {
-                          console.log(data);
-                          if (data.Address != "") {
-                            Data.push(data.Address);
-                            SecondData.push(data.Percentage);
-                          }
-                          setAddressWalletlist(Data);
-                          setAddressPercentage(SecondData);
+                    if (results.data !== null) {
+                      let Data = [];
+                      let SecondData = [];
+                      results.data.map((data) => {
+                        console.log(data);
+                        if (data.Address != "") {
+                          Data.push(data.Address);
+                          SecondData.push(data.Percentage);
+                        }
+                        setAddressWalletlist(Data);
+                        setAddressPercentage(SecondData);
+                      });
+                      await GetFundtransfer(library.provider, Data, SecondData)
+                        .send({
+                          from: account,
+                        })
+                        .then((res) => {
+                          console.log(res);
+                          Swal.fire("Transaction Successful", "", "success");
                         });
-                        console.log(Data);
-                        console.log(SecondData);
-                        await GetFundtransfer(
-                          library.provider,
-                          Data,
-                          SecondData
-                        )
-                          .send({
-                            from: account,
-                          })
-                          .then((res) => {
-                            Swal.fire("Transaction Successful", "", "success");
-                          });
-                      } else {
-                        Swal.fire(
-                          "Please check the list of address and percentage distribution"
-                        );
-                      }
+                    } else {
+                      Swal.fire("Please Select Correct File");
                     }
-                  } else {
-                    Swal.fire("USDT Balance is zero");
-                  }
-                } else {
-                  Swal.fire("Please connect  to the wallet");
-                }
+                  },
+                });
               } else {
-                Swal.fire("Please Select Correct File");
+                Swal.fire("You dot have sufficient fund ");
               }
-            },
-          });
+            } else {
+              Swal.fire("You are not a owner");
+            }
+          } else {
+            Swal.fire("Please connect  to the wallet");
+          }
         }}
       >
         <div class="form-group">
@@ -142,9 +128,6 @@ function CSVUpload(props) {
           >
             Submit File
           </button>
-          {/* <div className="text-center font-bold hidden md:block px-[16px] py-[8px] bg-[#FFD51E] rounded-md text-black cursor-pointer ease-in duration-300  hover:shadow-xl hover:shadow-[#060b27]/20">
-            Submit
-          </div> */}
         </div>
       </form>
     </div>

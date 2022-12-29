@@ -54,13 +54,13 @@ function Header(props) {
           </div>
           {/* Navigation  as  */}
           <div className=" md:flex gap-4  hidden">
-            {NavasData.map((item, key) => (
+            {/* {NavasData.map((item, key) => (
               <a href={item.link}>
                 <div className="hover:text-[#f4e9b0] cursor-pointer" key={key}>
                   {item.name}
                 </div>
               </a>
-            ))}
+            ))} */}
           </div>
 
           {/*  Social as  */}

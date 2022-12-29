@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Form, Input } from "antd";
 
 import {
-  
   GetICOStatus,
   Getowneraddres,
   GetTokenomics,
@@ -24,17 +23,6 @@ function Wallet() {
   const [Code, setCode] = useState();
   const [ManualBurning, setManualBurning] = useState();
   const [Stake, setStake] = useState();
-  const [Owneraddtess, setOwneraddtess] = useState();
-
-  useEffect(async () => {
-    if (active) {
-      setOwneraddtess(await Getowneraddres(library.provider));
-      console.log(Owneraddtess, "this is the owner address");
-      console.log(account, "this is the wallet address");
-    }
-  }, [active, account]);
-  // Wallet transition
-  
   return (
     <>
       {/* {Address.map((item, key) => (
@@ -42,7 +30,7 @@ function Wallet() {
                 
               */}
       <div className="flex-col">
-      <CSVUpload />
+        <CSVUpload />
       </div>
     </>
   );

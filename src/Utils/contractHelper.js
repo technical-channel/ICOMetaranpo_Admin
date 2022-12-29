@@ -4,6 +4,7 @@ import { ICOTokenContract } from "../Config/Contract/Contract";
 import { USDTToken } from "../Config/Contract/Contract";
 import { USDTTokenABI } from "../Config/ABI/USDTToken";
 import { ICO_ABI } from "../Config/ABI/ICO_ABI";
+import { RPC } from "../Config/constant";
 
 const getContract = (contractAddress, ABI, provider) => {
   const web3_ = new Web3(provider);
@@ -42,14 +43,16 @@ export const GetTokenomics = (provider, address) => {
     .call();
 };
 
-export const GetUserToken = (provider, address) => {
-  return getContract(USDTToken, USDTTokenABI, provider)
+export const GetUserToken = () => {
+  return getContract(USDTToken, USDTTokenABI, RPC)
     .methods.balanceOf(ICOTokenContract)
     .call();
 };
 
-export const Getowneraddres = (provider) => {
-  return getContract(ICOTokenContract, ICO_ABI, provider)
+export const Getowneraddres = async () => {
+  let data = await getContract(ICOTokenContract, ICO_ABI, RPC)
     .methods.owner()
     .call();
+  console.log(data);
+  return data;
 };
