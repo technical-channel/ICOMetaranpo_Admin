@@ -95,13 +95,13 @@ function CSVUpload(props) {
             required
           />
         </div>
-        <div class="form-group bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <button
+        <div class="form-group ">
+          <button className="font-bold text-xl"
             style={{
               textAlign: "center",
               justifyContent: "center",
               padding: " 0.375rem 0.75rem",
-              fontSize: "0.8rem",
+              fontSize: "1rem",
               lineHeight: "1.5",
               borderRadius: "0.25rem",
               color: "#000",
@@ -126,7 +126,7 @@ function CSVUpload(props) {
               }
             }}
           >
-            Submit File
+            Submit
           </button>
         </div>
       </form>

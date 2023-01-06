@@ -50,7 +50,7 @@ export const Rate = () => {
                     </div>
                     <div class="mb-6">
                         <label class="block text-gray-700 text-sm font-bold mb-2 text-xl" for="password">
-                            Presalerate 2
+                            PresaleRate 2
                         </label>
                         <input
                             onChange={(e) => {

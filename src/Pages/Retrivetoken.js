@@ -49,7 +49,7 @@ const Retrivetoken = () => {
     return (
         <>
             <div class="w-full h-[350px] max-w-xs">
-                <form class="h-[335px]  bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <form class="h-[350px]  bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                     <h1 className='text-xl font-bold py-2'>Retrive Token</h1>
                     <div class="mb-1">
                         <label class="block text-gray-700 text-sm font-bold mb-2 text-xl" for="Tokenaddress">
@@ -67,7 +67,7 @@ const Retrivetoken = () => {
                     </div>
                     <div class="mb-1">
                         <label class="block text-gray-700 text-sm font-bold mb-2 text-xl" for="amount">
-                            amount
+                            Amount
                         </label>
                         <input
                             onChange={(e) => {
@@ -87,7 +87,7 @@ const Retrivetoken = () => {
                             }}
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="walletaddress" type="text" placeholder="WalletAddress" />
                     </div>
-                    <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-between mt-1">
                         <button
                             onClick={Token}
                             class="bg-[#FFD51E] hover:bg-[#FFD51E] text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">

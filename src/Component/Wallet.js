@@ -29,7 +29,7 @@ function Wallet() {
    
                 
               */}
-      <div className="flex-col">
+      <div className="flex-col form-group bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <CSVUpload />
       </div>
     </>
